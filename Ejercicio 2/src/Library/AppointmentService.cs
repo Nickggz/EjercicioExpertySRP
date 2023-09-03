@@ -5,7 +5,7 @@ namespace Library
 {
     public class AppointmentService
     {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+        public static string CreateAppointment(string name, string age, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName, string docSpecialist)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             Boolean isValid = true;
@@ -16,6 +16,11 @@ namespace Library
                 isValid = false;
             }
 
+            if (string.IsNullOrEmpty(age))
+            {
+                stringBuilder.Append("Unable to schedule appointment, 'age' is required\n");
+                isValid = false;
+            }
             if (string.IsNullOrEmpty(id))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'id' is required\n");
@@ -38,6 +43,12 @@ namespace Library
             if (string.IsNullOrEmpty(doctorName))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
+                isValid = false;
+            }
+            
+            if (string.IsNullOrEmpty(docSpecialist))
+            {
+                stringBuilder.Append("Unable to schedule appointment, 'docSpecialist' is required\n");
                 isValid = false;
             }
 
