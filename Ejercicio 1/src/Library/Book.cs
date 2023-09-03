@@ -18,11 +18,11 @@ namespace Ucu.Poo.Expert
             this.Code = code;                                   //En este caso, la Clase "Book" contiene dos razones para cambiar.
         }
 
-        public void ShelveBook(String sector, String shelve)
+        /*public void ShelveBook(String sector, String shelve)
         {
             this.LibrarySector = sector;                        //Por lo tanto no cumpliría con SRP.
             this.LibraryShelve = shelve;
         }
-
+        */
     }
 }
