@@ -1,64 +1,25 @@
-﻿using System;
+using System;
 using System.Text;
 
-namespace Library
-{
+namespace Library;
+
     public class AppointmentService
     {
         public static string CreateAppointment(string name, string age, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName, string docSpecialist)
         {
             StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
-            Boolean isValid = true;
-
-            if (string.IsNullOrEmpty(name))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'name' is required\n");
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(age))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'age' is required\n");
-                isValid = false;
-            }
-            if (string.IsNullOrEmpty(id))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'id' is required\n");
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(phoneNumber))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'phone number' is required\n");
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(appoinmentPlace))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'appoinment place' is required\n");
-                isValid = false;
-            }
-
-
-            if (string.IsNullOrEmpty(doctorName))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
-                isValid = false;
-            }
             
-            if (string.IsNullOrEmpty(docSpecialist))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'docSpecialist' is required\n");
-                isValid = false;
-            }
-
-            if (isValid)
+            if (ValidationService.ValidateAppointmentData(name, age, id, phoneNumber, appoinmentPlace, doctorName, docSpecialist))
             {
                 stringBuilder.Append("Appoinment scheduled");
+            }
+            else
+            {
+                string errorMessage = ErrorService.GenerateErrorMessage(name, age, id, phoneNumber, appoinmentPlace, doctorName, docSpecialist);
+                stringBuilder.AppendLine(errorMessage);
             }
 
             return stringBuilder.ToString();
         }
 
     }
-}
